@@ -273,6 +273,19 @@ write_x()
    printf "${output}" > "${CACHE_DIR}/x_colors"
 }
 
+write_rasi()
+{
+   local rasi_output=""
+   local rasi_output+="* {${NEWLINE}"
+   local rasi_output+="\tbackground: \t${BG};${NEWLINE}"
+   local rasi_output+="\tforeground: \t${FG};${NEWLINE}"
+   for i in {0..15}; do
+       local rasi_output+="\tcolor${i}: \t${COLOR_ARRAY[${i}]};${NEWLINE}"
+   done
+   local rasi_output+="}"
+
+   printf "${rasi_output}" > "${CACHE_DIR}/colors.rasi"
+}
 write_css() 
 {
    local css_output=""
@@ -369,6 +382,7 @@ main()
 
     [[ ! "${WRITE_ALL}" = "NO" ]] && write_x
     [[ ! "${WRITE_ALL}" = "NO" ]] && write_sh
+    [[ ! "${WRITE_ALL}" = "NO" ]] && write_rasi
     [[ ! "${WRITE_ALL}" = "NO" ]] && write_css
     [[ ! "${WRITE_ALL}" = "NO" ]] && write_plain
 
