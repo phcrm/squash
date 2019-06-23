@@ -143,3 +143,15 @@ nvim() {
 ```
 
 `squash` will attempt to edit your `$MYVIMRC`, which may cause problems. Use at your own risk.
+
+### rofi
+
+`squash` writes a `.rasi` file. You can source this file at the end of your rofi theme and use it to define `rofi` colors
+
+```css
+* {
+    background-color: @background;
+}
+
+@import "/home/USER/.cache/squash/colors.rasi"
+```
